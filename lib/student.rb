@@ -13,7 +13,7 @@ class Student
     sql = <<-SQL
       SELECT * FROM students 
     SQL
-    DB[:conn].execute(sql)
+    DB[:conn].execute(sql, name).map do |row|
 
   end
 
