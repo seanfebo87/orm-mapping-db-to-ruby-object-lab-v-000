@@ -56,8 +56,9 @@ class Student
     sql = <<-SQL
       SELECT * FROM students WHERE grade = 10 LIMIT 1 
     SQL
-    DB[:conn].execute(sql)
-  end
+    DB[:conn].execute(sql).map do |row|
+      self.new_from_db(row)
+    end
   def save
     sql = <<-SQL
       INSERT INTO students (name, grade) 
